@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-rb=7e4d21*()wea!1%#nxco*=4_i00y$hn(-lz=^%xfm$)-z2y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cuproject.musom.edu.np', 'www.cuproject.musom.edu.np', '127.0.0.1']
 
 
 # Application definition
