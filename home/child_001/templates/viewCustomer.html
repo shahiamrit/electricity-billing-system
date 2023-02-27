@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<br>
+
+<div class="row">
+    <div class="col-2">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active bg-success" id="list-home-list" data-toggle="list" href="dashboard" role="tab" aria-controls="home">Dashboard</a>
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="add" role="tab" aria-controls="profile">Add Customer</a>
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="viewCustomer" role="tab" aria-controls="profile">View Customer</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="bill" role="tab" aria-controls="messages">View Bill</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="addconnection" role="tab" aria-controls="messages"> Add Bill</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="payment" role="tab" aria-controls="settings">Payment Status</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Change Password</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Logout</a>
+      </div>
+    </div>
+    <div class="col-10">
+      <!-- Your Content Here -->
+      All Customer
+      <hr style="color: burlywood">
+
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="table-info">
+            <td>{{i.id}}</td>
+            <td>{{i.firstname}} {{i.middlename}} {{i.lastname}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.state}}</td>
+            <td>
+                <a href="{% url 'update' i.id %}" class="btn btn-warning btn-sm">Update<i class="fa-regular fa-pen-to-square"></i></a>
+                <form action="{% url 'delete' i.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-sm"> Delete
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+                </form>
+                </td>
+
+        </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+
+
+
+<br>
+<br>
+<br>
+{% include 'footer.html' %}
+
+{% endblock %}

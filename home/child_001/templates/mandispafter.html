@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<br>
+
+<div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+      <!-- Your Content Here -->
+      View Latest Pending Bills
+      <hr style="color: burlywood;">
+
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Bill for the Month</th>
+            <th scope="col">Current Reading</th>
+            <th scope="col">Previous Reading</th>
+            <th scope="col">Total Units</th>
+            <th scope="col">Charge Per Unit</th>
+            <th scope="col">Final Amount</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+           
+            <tr class="table-info">
+            <td>{{i.id}}</td>
+            <td>{{i.customer_id}}</td>
+            <td>{{i.bill_for_the_month}}</td>
+            <td>{{i.current_reading}}</td>
+            <td>{{i.previous_reading}}</td>
+            <td>{{i.total_unit}}</td>
+            <td>{{i.charge_per_unit}}</td>
+            <td>{{i.final_amount}}</td>
+            <td>{{i.due_date}}</td>
+            {% if i.status %}
+            <td>{{i.status}}</td>
+            {% else %}
+            <td>Not Paid</td>
+            {% endif %}
+            <td>
+                <form method="POST" class="d-inline">
+                    {% csrf_token %}
+                  <input type="submit" value="paid" name="paid" class="btn btn-success">
+                  <input type="text" value="{{i.customer_id}}" name="amrit" class="invisible">
+                </form>
+                </td>
+
+        </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-2">
+
+    </div>
+  </div>
+
+
+
+<br>
+<br>
+<br>
+{% include 'footer.html' %}
+
+{% endblock %}

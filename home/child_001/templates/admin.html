@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<br>
+<div class="row">
+  <div class="col-2">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active bg-success" id="list-home-list" data-toggle="list" href="dashboard" role="tab" aria-controls="home">Dashboard</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="add" role="tab" aria-controls="profile">Add Customer</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="viewCustomer" role="tab" aria-controls="profile">View Customer</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="bill" role="tab" aria-controls="messages">View Bill</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="addconnection" role="tab" aria-controls="messages"> Add Bill</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="payment" role="tab" aria-controls="settings">Payment Status</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Change Password</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Logout</a>
+    </div>
+  </div>
+  <div class="col-10">
+    <!-- Your Content Here -->
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col btn btn-success col-3">
+          Total Customer {{data2}}
+        </div>
+        <div class="col btn btn-success col-3">
+          Total Bill {{data}}
+        </div>
+        <div class="col btn btn-success col-3">
+          Total Paid {{paid}}
+        </div>
+        <div class="col btn btn-success col-3">
+          Total Not Paid {{unpaid}}
+        </div>
+      </div>
+    </div>
+    <p class="m-2 p-3">Student UID O21MSD16343, Welcome to Electricity Billing System Developed by Amrit Shahi Chandigarh  III Semester MSC-Data Science</p>
+  </div>
+</div>
+
+
+      <br>
+      <br>
+      <br>
+{% include 'footer.html' %}
+{% endblock %}

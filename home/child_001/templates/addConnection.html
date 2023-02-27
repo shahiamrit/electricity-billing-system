@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<br>
+
+<div class="row">
+    <div class="col-2">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active bg-success" id="list-home-list" data-toggle="list" href="dashboard" role="tab" aria-controls="home">Dashboard</a>
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="add" role="tab" aria-controls="profile">Add Customer</a>
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="viewCustomer" role="tab" aria-controls="profile">View Customer</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="bill" role="tab" aria-controls="messages">View Bill</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="addconnection" role="tab" aria-controls="messages"> Add Bill</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="payment" role="tab" aria-controls="settings">Payment Status</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Change Password</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Logout</a>
+      </div>
+    </div>
+    <div class="col-10">
+      <!-- Your Content Here -->
+      Add New Bill
+      <hr style="color: burlywood;">
+      <form class="row g-3 p-3" method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+
+           <div class="col-md-4">
+            <label for="inputState" class="form-label">*Customer ID</label>
+            <select class="form-control" name="custidselect" required>
+              <option selected>Choose...</option>
+              {% for i in data %}
+              <option>{{i.userid}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+           <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Bill for the Month</label>
+            <input type="text" class="form-control" id="validationDefault02" name="bfm" required>
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Current Reading</label>
+            <input type="number" class="form-control" id="validationDefault02" name="cr" required>
+          </div>
+        
+          <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Previous Reading</label>
+            <input type="text" class="form-control" id="validationDefault02" name="pr" required>
+          </div>
+    
+          <!-- <div class="col-md-4">
+            <label for="inputState" class="form-label">*Gender</label>
+            <select class="form-control" name="gender" required>
+              <option selected>Choose...</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div> -->
+          
+          <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Total Unit</label>
+            <input type="address" class="form-control" id="validationDefault02" name="tu" required>
+          </div>
+
+          <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Charge Per Unit</label>
+            <input type="address" class="form-control" id="validationDefault02" name="cpu" required>
+          </div>
+
+          <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Final Amount</label>
+            <input type="address" class="form-control" id="validationDefault02" name="famount" required>
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">*Due Date</label>
+            <input type="date" class="form-control" id="validationDefault02" name="dd" required>
+          </div>
+          <div class="col-lg-3">
+            <input type="submit" class="form-control btn-success" id="validationDefault02" >
+          </div> 
+       </form>
+    </div>
+  </div>
+
+
+
+<br>
+<br>
+<br>
+{% include 'footer.html' %}
+
+{% endblock %}
